@@ -1,37 +1,142 @@
-<form action="action_page.php">
-  <div class="container">
-    <h1>New user Register for DevOps Learning</h1>
-    <p>Please fill in this form to create an account.</p>
-    <hr>
-     
-    <label for="Name"><b>Enter Name</b></label>
-    <input type="text" placeholder="Enter Full Name" name="Name" id="Name" required>
-    <br>
-    
-    <label for="mobile"><b>Enter mobile</b></label>
-    <input type="text" placeholder="Enter moible number" name="mobile" id="mobile" required>
-    <br>
+<!DOCTYPE html>
+<html>
 
-    <label for="email"><b>Enter Email</b></label>
-    <input type="text" placeholder="Enter Email" name="email" id="email" required>
-    <br>
+<head>
+	<script src=
+"https://cdnjs.cloudflare.com/ajax/libs/mathjs/10.6.4/math.js"
+		integrity=
+"sha512-BbVEDjbqdN3Eow8+empLMrJlxXRj5nEitiCAK5A1pUr66+jLVejo3PmjIaucRnjlB0P9R3rBUs3g5jXc8ti+fQ=="
+		crossorigin="anonymous"
+		referrerpolicy="no-referrer"></script>
+	<script src=
+"https://cdnjs.cloudflare.com/ajax/libs/mathjs/10.6.4/math.min.js"
+		integrity=
+"sha512-iphNRh6dPbeuPGIrQbCdbBF/qcqadKWLa35YPVfMZMHBSI6PLJh1om2xCTWhpVpmUyb4IvVS9iYnnYMkleVXLA=="
+		crossorigin="anonymous"
+		referrerpolicy="no-referrer"></script>
+	<!-- for styling -->
+	<style>
+		table {
+			border: 1px solid black;
+			margin-left: auto;
+			margin-right: auto;
+		}
 
-    <label for="psw"><b>Password</b></label>
-    <input type="password" placeholder="Enter Password" name="psw" id="psw" required>
-    <br>
+		input[type="button"] {
+			width: 100%;
+			padding: 20px 40px;
+			background-color: green;
+			color: white;
+			font-size: 24px;
+			font-weight: bold;
+			border: none;
+			border-radius: 5px;
+		}
 
-    <label for="psw-repeat"><b>Repeat Password</b></label>
-    <input type="password" placeholder="Repeat Password" name="psw-repeat" id="psw-repeat" required>
-    <hr>
-    <br>
-    <p>By creating an account you agree to our <a href="#">Terms & Privacy</a>.</p>
-    <button type="submit" class="registerbtn">Register</button>
-  </div>
-  <div class="container signin">
-    <p>Already have an account? <a href="#">Sign in</a>.</p>
-  </div>
+		input[type="text"] {
+			padding: 20px 30px;
+			font-size: 24px;
+			font-weight: bold;
+			border: none;
+			border-radius: 5px;
+			border: 2px solid black;
+		}
+	</style>
+</head>
+<!-- create table -->
 
-   <h1> Thankyou, Happy Learning </h1>
+<body>
+	<table id="calcu">
+		<tr>
+			<td colspan="3"><input type="text" id="result"></td>
+			<!-- clr() function will call clr to clear all value -->
+			<td><input type="button" value="c" onclick="clr()" /> </td>
+		</tr>
+		<tr>
+			<!-- create button and assign value to each button -->
+			<!-- dis("1") will call function dis to display value -->
+			<td><input type="button" value="1" onclick="dis('1')"
+						onkeydown="myFunction(event)"> </td>
+			<td><input type="button" value="2" onclick="dis('2')"
+						onkeydown="myFunction(event)"> </td>
+			<td><input type="button" value="3" onclick="dis('3')"
+						onkeydown="myFunction(event)"> </td>
+			<td><input type="button" value="/" onclick="dis('/')"
+						onkeydown="myFunction(event)"> </td>
+		</tr>
+		<tr>
+			<td><input type="button" value="4" onclick="dis('4')"
+						onkeydown="myFunction(event)"> </td>
+			<td><input type="button" value="5" onclick="dis('5')"
+						onkeydown="myFunction(event)"> </td>
+			<td><input type="button" value="6" onclick="dis('6')"
+						onkeydown="myFunction(event)"> </td>
+			<td><input type="button" value="*" onclick="dis('*')"
+						onkeydown="myFunction(event)"> </td>
+		</tr>
+		<tr>
+			<td><input type="button" value="7" onclick="dis('7')"
+						onkeydown="myFunction(event)"> </td>
+			<td><input type="button" value="8" onclick="dis('8')"
+						onkeydown="myFunction(event)"> </td>
+			<td><input type="button" value="9" onclick="dis('9')"
+						onkeydown="myFunction(event)"> </td>
+			<td><input type="button" value="-" onclick="dis('-')"
+						onkeydown="myFunction(event)"> </td>
+		</tr>
+		<tr>
+			<td><input type="button" value="0" onclick="dis('0')"
+						onkeydown="myFunction(event)"> </td>
+			<td><input type="button" value="." onclick="dis('.')"
+						onkeydown="myFunction(event)"> </td>
+			<!-- solve function call function solve to evaluate value -->
+			<td><input type="button" value="=" onclick="solve()"> </td>
 
-  
-</form>
+			<td><input type="button" value="+" onclick="dis('+')"
+						onkeydown="myFunction(event)"> </td>
+		</tr>
+	</table>
+
+	<script>
+		// Function that display value
+		function dis(val) {
+			document.getElementById("result").value += val
+		}
+
+		function myFunction(event) {
+			if (event.key == '0' || event.key == '1'
+				|| event.key == '2' || event.key == '3'
+				|| event.key == '4' || event.key == '5'
+				|| event.key == '6' || event.key == '7'
+				|| event.key == '8' || event.key == '9'
+				|| event.key == '+' || event.key == '-'
+				|| event.key == '*' || event.key == '/')
+				document.getElementById("result").value += event.key;
+		}
+
+		var cal = document.getElementById("calcu");
+		cal.onkeyup = function (event) {
+			if (event.keyCode === 13) {
+				console.log("Enter");
+				let x = document.getElementById("result").value
+				console.log(x);
+				solve();
+			}
+		}
+
+		// Function that evaluates the digit and return result
+		function solve() {
+			let x = document.getElementById("result").value
+			let y = math.evaluate(x)
+			document.getElementById("result").value = y
+		}
+
+		// Function that clear the display
+		function clr() {
+			document.getElementById("result").value = ""
+		}
+	</script>
+</body>
+
+</html>
+
